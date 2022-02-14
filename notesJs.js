@@ -35,7 +35,7 @@ document.getElementById("noteAddBtn").addEventListener("click", ()=>{
         
         localStorage.setItem("notes", JSON.stringify(addedNotes));
         note.setAttribute("placeholder", "Write something...");
-        note.setAttribute("value", "");
+        note.value=null;
     }
 
 });
