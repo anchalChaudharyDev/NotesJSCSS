@@ -24,12 +24,20 @@ document.getElementById("noteAddBtn").addEventListener("click", ()=>{
     if(count==0)
         notes.removeChild(this.noNodesEle);
 
-    addedNotes.push(document.getElementById("note").value);    
+    let note = document.getElementById("note");
+    let valueOfNote = note.value;
+    if(valueOfNote === null || valueOfNote === undefined || valueOfNote === ''){
+        alert("Enter some note before submitting");
+    } else {
+        addedNotes.push(valueOfNote);    
 
-    showNotes();
-    
-    localStorage.setItem("notes", JSON.stringify(addedNotes));
-    note.textContent = "Write something...";
+        showNotes();
+        
+        localStorage.setItem("notes", JSON.stringify(addedNotes));
+        note.setAttribute("placeholder", "Write something...");
+        note.setAttribute("value", "");
+    }
+
 });
 
 function showNotes(){
@@ -68,24 +76,24 @@ function showNotes(){
 
         let inputField = document.getElementById("note");
         console.log(inputField);
-        inputField.value = "Write something ... ";
+        inputField.setAttribute("placeholder", "Write something ... ");
     });
+
+    count = addedNotes.length;
 }
 
 //deleteNode
 function deleteNote(id){
-
-    // let noteToDelete = document.getElementById("note"+id);
-    // notes.removeChild(noteToDelete);
-
-    addedNotes.splice(id, 1);
-    localStorage.setItem("notes", addedNotes);
+    let noteToDel =id.parentElement.childNodes[1].textContent;
+    addedNotes.splice(addedNotes.indexOf(noteToDel), 1);
+    localStorage.setItem("notes", JSON.stringify(addedNotes));
     let newNotes = getAddedNotes();
     display(newNotes.length);
 }
 
 function display(count){
     if(count==0){
+        showNotes();
         noNotesPresent();
     } else {
         showNotes();
