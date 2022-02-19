@@ -48,6 +48,11 @@ nav ul li{
     width: 63vw;
     margin-bottom: 20px;
 }
+#noteTitle{
+    height: 3vh;
+    width: 20vw;
+    margin-bottom: 20px;
+}
 #noteAddBtn{
     width: 5vw;
     height: 4vh;
